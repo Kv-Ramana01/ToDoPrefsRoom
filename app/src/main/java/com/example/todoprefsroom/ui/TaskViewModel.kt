@@ -22,7 +22,7 @@ class TaskViewModel(private val repo: TaskRepository) : ViewModel() {
     fun toggle(task: TaskEntity) = viewModelScope.launch { repo.toggle(task) }
     fun delete(task: TaskEntity) = viewModelScope.launch { repo.delete(task) }
 
-    /* ---------- factory (no Hilt) ----------- */
+
     companion object {
         fun factory(context: android.content.Context): ViewModelProvider.Factory =
             object : ViewModelProvider.Factory {

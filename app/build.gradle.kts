@@ -59,11 +59,13 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
     //Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.7.2")
-    implementation("androidx.room:room-ktx:2.6.1")
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
 
     //firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))

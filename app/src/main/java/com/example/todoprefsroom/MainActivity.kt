@@ -1,5 +1,7 @@
 package com.example.todoprefsroom
 
+import android.content.Context
+import androidx.compose.runtime.*
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,15 +12,23 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todoprefsroom.data.LoginPrefs
 import com.example.todoprefsroom.ui.LoginScreen
+import com.example.todoprefsroom.ui.TaskListScreen
+import com.example.todoprefsroom.ui.AuthViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.todoprefsroom.data.remote.AuthState
+import com.example.todoprefsroom.ui.TaskViewModel
 import com.example.todoprefsroom.ui.theme.ToDoPrefsRoomTheme
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +47,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppRoot() {
-    var loggedIn by remember { mutableStateOf(LoginPrefs.isLoggedIn) }
+fun AppRoot(context: Context = LocalContext.current) {
+    val loggedIn by AuthState.loggedInFlow.collectAsState()
+
     if (loggedIn) {
-        Text("Logged-in home - coming soon")
+        val vm = viewModel<TaskViewModel>(
+            factory = TaskViewModel.factory(context)
+        )
+
+        TaskListScreen(
+            vm = vm,
+            onLogout = {
+                FirebaseAuth.getInstance().signOut()
+            }
+        )
     } else {
-        LoginScreen { loggedIn = true }
+        val authVm = viewModel<AuthViewModel>()
+        LoginScreen(
+            vm = authVm,
+            onSuccess = {}
+        )
     }
 }
