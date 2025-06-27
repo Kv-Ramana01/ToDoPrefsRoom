@@ -2,7 +2,10 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.googleServices)
+    id("kotlin-kapt")
 }
+
 
 android {
     namespace = "com.example.todoprefsroom"
@@ -56,4 +59,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    kapt("androidx.room:room-compiler:2.7.2")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    // Auth
+    implementation("com.google.firebase:firebase-auth-ktx")
+    // Firestore
+    implementation("com.google.firebase:firebase-firestore-ktx")
 }

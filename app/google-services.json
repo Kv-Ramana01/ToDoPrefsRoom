@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "84733635658",
+    "project_id": "todoprefsroom",
+    "storage_bucket": "todoprefsroom.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84733635658:android:782c9e598b7dc37f1dcab3",
+        "android_client_info": {
+          "package_name": "com.example.todoprefsroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84733635658-f295fdrn04k68gve4htd42pe448dct1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.todoprefsroom",
+            "certificate_hash": "b022df09bc183fc1ab930ed28a1ec4e94760b835"
+          }
+        },
+        {
+          "client_id": "84733635658-ref28udo58rcp1aa457cm6rheiuoi1rn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTTanaQwOdnMI7KDATRQK7rf0jdPfAHuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84733635658-ref28udo58rcp1aa457cm6rheiuoi1rn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
