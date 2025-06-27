@@ -1,5 +1,6 @@
 package com.example.todoprefsroom
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,9 +16,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.todoprefsroom.data.LoginPrefs
 import com.example.todoprefsroom.ui.LoginScreen
+import com.example.todoprefsroom.ui.TaskListScreen
+import com.example.todoprefsroom.ui.TaskViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.todoprefsroom.ui.theme.ToDoPrefsRoomTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,10 +42,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AppRoot() {
+fun AppRoot(context: Context = LocalContext.current) {
     var loggedIn by remember { mutableStateOf(LoginPrefs.isLoggedIn) }
     if (loggedIn) {
-        Text("Logged-in home - coming soon")
+        val vm: TaskViewModel = viewModel(factory = TaskViewModel.factory(context))
+        TaskListScreen(vm)
     } else {
         LoginScreen { loggedIn = true }
     }
